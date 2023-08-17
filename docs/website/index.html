@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysX Engine - Advanced 3D Physics & Rendering</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            margin: 0;
+            padding-bottom: 20px;
+        }
+        .main-content {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main-content h2 {
+            color: #555;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .main-content pre {
+            background: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .main-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+            border-top: #77aaff 3px solid;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PhysX Engine</h1>
+        <p style="text-align: center; font-style: italic;">Advanced 3D Physics & Rendering Engine in C++</p>
+    </header>
+
+    <div class="container">
+        <section class="main-content">
+            <h2>Giới thiệu</h2>
+            <p><strong>PhysX Engine</strong> là một engine vật lý 3D hiệu năng cao được phát triển bằng C++17, tích hợp hệ thống render 3D hiện đại dựa trên Vulkan và kiến trúc ECS (Entity Component System) mạnh mẽ. Dự án này được thiết kế để minh họa các khái niệm phức tạp trong phát triển game và mô phỏng, bao gồm vật lý thời gian thực, đổ bóng PBR, quản lý tài nguyên và scripting với Lua.</p>
+            <p>Mục tiêu của dự án là cung cấp một nền tảng vững chắc để xây dựng các ứng dụng và game 3D, với sự chú trọng vào hiệu suất, khả năng mở rộng và chất lượng mã.</p>
+
+            <h2>Các tính năng nổi bật</h2>
+            <ul>
+                <li>🚀 <strong>Vật lý thời gian thực</strong>: Mô phỏng rigid body chính xác, phát hiện va chạm nâng cao (GJK/EPA), và hệ thống ràng buộc linh hoạt.</li>
+                <li>🎨 <strong>Render 3D hiện đại</strong>: Pipeline dựa trên Vulkan 1.2+, hỗ trợ PBR, deferred shading, đổ bóng mềm (soft shadows) với Cascaded Shadow Maps.</li>
+                <li>⚙️ <strong>Kiến trúc ECS</strong>: Quản lý hàng ngàn entity hiệu quả, hệ thống component linh hoạt và thực thi hệ thống song song.</li>
+                <li>📜 <strong>Hệ thống Scripting</strong>: Tích hợp Lua 5.4 cho logic game, với API toàn diện để tương tác với engine.</li>
+                <li>📦 <strong>Quản lý Tài nguyên</strong>: Tải tài nguyên bất đồng bộ (models, textures, shaders) và quản lý bộ nhớ hiệu quả.</li>
+                <li>⌨️ <strong>Hệ thống Input linh hoạt</strong>: Xử lý đầu vào từ bàn phím, chuột và gamepad thông qua một kiến trúc dựa trên sự kiện.</li>
+                <li>🔊 <strong>Hệ thống Âm thanh</strong>: Tích hợp phát lại âm thanh 3D cơ bản (ví dụ: với OpenAL hoặc miniaudio).</li>
+                <li>🔗 <strong>Hệ thống Hạt (Particle System)</strong>: Mô phỏng các vật thể mềm (soft body) hoặc hiệu ứng đặc biệt bằng cách sử dụng các hạt và ràng buộc lò xo.</li>
+            </ul>
+
+            <h2>Hình ảnh Demo</h2>
+            <img src="https://via.placeholder.com/800x450?text=PhysX+Engine+Demo" alt="PhysX Engine Demo">
+            <p style="text-align: center; font-style: italic;">Hình ảnh mô phỏng kết quả hoạt động của PhysX Engine.</p>
+
+            <h2>Cách Build và Chạy</h2>
+            <p>Để build và chạy dự án này, bạn cần có:</p>
+            <ul>
+                <li>CMake 3.15+</li>
+                <li>Trình biên dịch C++17 (GCC 10+, Clang 12+, MSVC 2019+)</li>
+                <li>Vulkan SDK 1.2+</li>
+                <li>GLFW 3.3+</li>
+                <li>Lua 5.4</li>
+                <li>Các thư viện bên thứ ba (EnTT, GLM, Sol2, v.v.) sẽ được tải hoặc quản lý qua CMake.</li>
+            </ul>
+
+            <h3>Các bước</h3>
+            <pre><code># Clone repository
+git clone https://github.com/yourusername/PhysX-Engine.git
+cd PhysX-Engine
+
+# Tạo thư mục build
+mkdir build
+cd build
+
+# Cấu hình và build dự án
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build . --config Release -j 8
+
+# Chạy ứng dụng demo
+./bin/PhysX_Demo
+</code></pre>
+
+            <h2>Cấu trúc dự án</h2>
+            <p>Dự án được tổ chức theo cấu trúc module, dễ dàng mở rộng và bảo trì:</p>
+            <pre><code>PhysX-Engine/
+├── cmake/              # Các CMake modules tùy chỉnh
+├── docs/               # Tài liệu dự án và trang web
+│   └── website/
+├── include/            # Header files
+│   ├── core/           # Core systems (ECS, math, input, assets)
+│   ├── physics/        # Physics engine (rigid body, collision, particles)
+│   ├── rendering/      # Rendering pipeline (Vulkan, shaders, mesh)
+│   └── scripting/      # Lua integration
+├── resources/          # Tài nguyên (shaders, textures, models)
+├── src/                # Source code implementation
+├── test/               # Unit tests
+├── third_party/        # Thư viện bên thứ ba
+├── .gitignore
+├── CMakeLists.txt
+├── LICENSE
+└── README.md
+</code></pre>
+
+            <h2>Đóng góp</h2>
+            <p>Mọi đóng góp đều được hoan nghênh! Vui lòng tạo issue hoặc pull request trên GitHub của dự án.</p>
+
+            <h2>Giấy phép</h2>
+            <p>Dự án này được phân phối dưới giấy phép MIT. Xem file <a href="LICENSE">LICENSE</a> để biết chi tiết.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PhysX Engine. All rights reserved.</p>
+    </footer>
+</body>
+</html> 
